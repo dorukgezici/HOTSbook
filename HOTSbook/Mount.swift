@@ -24,7 +24,7 @@ class Mount: Hashable {
         self.name = JSON["name"] as! String
         self.description = JSON["description"] as! String
 
-        if let img = UIImage(named: "hots-\(name.lowercaseString)") { self.img = img }
+        if let img = UIImage(named: "hots-\(name.lowercased())") { self.img = img }
         else { self.img = UIImage(named: "hots-heroes-poster") }
     }
     

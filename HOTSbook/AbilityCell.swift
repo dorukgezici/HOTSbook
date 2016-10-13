@@ -15,11 +15,11 @@ class AbilityCell: UITableViewCell {
     @IBOutlet weak var cooldown: UILabel!
     @IBOutlet weak var shortcut: UILabel!
 
-    func configureCell(ability: Ability) {
-        name.text = ability.name?.capitalizedString
-        descript.text = ability.description?.capitalizedString
-        cooldown.text = ability.cooldown?.capitalizedString
-        shortcut.text = ability.shortcut?.capitalizedString
+    func configureCell(_ ability: Ability) {
+        name.text = ability.name?.capitalized
+        descript.text = ability.description?.capitalized
+        cooldown.text = ability.cooldown?.capitalized
+        shortcut.text = ability.shortcut?.capitalized
     }
 
 }

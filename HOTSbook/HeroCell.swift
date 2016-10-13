@@ -25,7 +25,7 @@ class HeroCell: UICollectionViewCell {
         super.init(frame: frame)
     }
 
-    func configureCell(hero: Hero) {
+    func configureCell(_ hero: Hero) {
         Lbl.text = hero.name
         Img.image = hero.img
     }

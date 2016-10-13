@@ -22,10 +22,10 @@ class MountsVC: UIViewController, UICollectionViewDelegate, UICollectionViewData
     }
 
     func parseMountsJSON() {
-        if let path = NSBundle.mainBundle().pathForResource("mounts", ofType: "json") {
-            if let data = NSData(contentsOfFile: path) {
+        if let path = Bundle.main.path(forResource: "mounts", ofType: "json") {
+            if let data = try? Data(contentsOf: URL(fileURLWithPath: path)) {
                 do {
-                    if let objects = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) as? [[String:AnyObject]] {
+                    if let objects = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? [[String:AnyObject]] {
                         for object in objects {
                             let mount = Mount(JSON: object)
                             self.mounts.append(mount)
@@ -36,24 +36,24 @@ class MountsVC: UIViewController, UICollectionViewDelegate, UICollectionViewData
         }
     }
 
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
 
 
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return mounts.count
     }
 
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCellWithReuseIdentifier("MountCell", forIndexPath: indexPath) as? MountCell {
-            cell.configureCell(mounts[indexPath.row])
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MountCell", for: indexPath) as? MountCell {
+            cell.configureCell(mounts[(indexPath as NSIndexPath).row])
             return cell
         } else { return UICollectionViewCell() }
     }
 
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(160, 140)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 160, height: 140)
     }
 
 }

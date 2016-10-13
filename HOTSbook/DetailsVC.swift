@@ -36,15 +36,15 @@ class DetailsVC: UIViewController {
 
     @IBOutlet weak var closeBtn: UIButton!
     @IBAction func closeBtnAct() {
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
-    @IBAction func doneBtnAct(sender: AnyObject) {
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func doneBtnAct(_ sender: AnyObject) {
+        dismiss(animated: true, completion: nil)
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "abilities" {
-            if let destVC = segue.destinationViewController as? AbilitiesVC {
+            if let destVC = segue.destination as? AbilitiesVC {
                 destVC.abilities = hero.abilities
                 destVC.heroName = hero.name
             }

@@ -27,6 +27,7 @@ class Hero: Hashable {
     var difficulty: String!
 
     init(JSON: [String:AnyObject]) {
+
         self.JSON = JSON
         id = JSON["id"] as! String
         name = JSON["name"] as! String
@@ -37,7 +38,7 @@ class Hero: Hashable {
         franchise = JSON["franchise"] as! String
         difficulty = JSON["difficulty"] as! String
 
-        if let img = UIImage(named: "hots-\(name.lowercaseString)") { self.img = img }
+        if let img = UIImage(named: "hots-\(name.lowercased())") { self.img = img }
         else { self.img = UIImage(named: "hots-heroes-poster") }
         if let abils = JSON["abilities"]![id] as? [[String:AnyObject]] {
             for abil in abils {
@@ -45,6 +46,7 @@ class Hero: Hashable {
                 self.abilities.append(ability)
             }
         }
+
     }
     
 }
@@ -59,6 +61,7 @@ enum role: String {
     case Support
     case Specialist
 }
+
 enum franchise: String {
     case Warcraft
     case Starcraft

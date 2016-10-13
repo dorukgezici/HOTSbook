@@ -23,7 +23,7 @@ class MountCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
-    func configureCell(mount: Mount) {
+    func configureCell(_ mount: Mount) {
         mountName.text = mount.name
         mountImg.image = mount.img
     }

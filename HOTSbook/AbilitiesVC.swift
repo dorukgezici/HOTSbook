@@ -20,27 +20,27 @@ class AbilitiesVC: UIViewController, UITableViewDelegate, UITableViewDataSource 
         tableView.delegate = self
         tableView.dataSource = self
         if heroName.characters.last == "s" {
-            AbilitiesLbl.title = "\(heroName)' Abilities"
+            AbilitiesLbl.title = "\(heroName!)' Abilities"
         } else {
-            AbilitiesLbl.title = "\(heroName)'s Abilities"
+            AbilitiesLbl.title = "\(heroName!)'s Abilities"
         }
     }
 
     @IBAction func backBtnAct() {
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return abilities.count
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCellWithIdentifier("AbilityCell") as? AbilityCell {
-            cell.configureCell(abilities[indexPath.row])
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "AbilityCell") as? AbilityCell {
+            cell.configureCell(abilities[(indexPath as NSIndexPath).row])
             return cell
         } else { return UITableViewCell() }
     }
