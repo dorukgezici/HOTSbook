@@ -29,6 +29,13 @@ class HeroesVC: UIViewController, UICollectionViewDelegate, UICollectionViewData
         filteredHeroes = heroes
         roleHeroes = heroes
         franchiseHeroes = heroes
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(HeroesVC.dismissSearch))
+        tapGesture.cancelsTouchesInView = false
+        collectionView.addGestureRecognizer(tapGesture)
+    }
+    
+    func dismissSearch() {
+        searchBar.resignFirstResponder()
     }
     
     func parseHeroesJSON() {
@@ -45,6 +52,8 @@ class HeroesVC: UIViewController, UICollectionViewDelegate, UICollectionViewData
             }
         }
     }
+    
+    // MARK: - Collection View Delegate Methods
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if isSearching { return filteredHeroes.count }
